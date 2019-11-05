@@ -1,0 +1,79 @@
+{
+  "$schema": "http://cachemanager.michaco.net/schemas/cachemanager.json#",
+  "ncache": [
+    {
+      "key": "ncacheConnection",
+      "cacheid": "demo1",
+      "servers": [
+        {
+          "ipaddress": "20.200.20.45",
+          "port": 9800
+        }
+      ],
+      "enableclientlogs": true,
+      "clientloglevel": "debug",
+      "enablekeynotifications": true
+    },
+    {
+      "key": "ncacheConnection2",
+      "cacheid": "demo2",
+      "servers": [
+        {
+          "ipaddress": "20.200.20.45",
+          "port": 9800
+        }
+      ]
+    },
+    {
+      "key": "ncacheConnection3",
+      "cacheid": "demo3",
+      "servers": [
+        {
+          "ipaddress": "20.200.20.45",
+          "port": 9800
+        }
+      ]
+    }
+  ],
+  "cacheManagers": [
+    {
+      "name": "myCache",
+      "maxRetries": 500,
+      "retryTimeout": 30,
+      "loggerFactory": {
+        "knownType": "Microsoft"
+      },
+      "backplane": {
+        "key": "ncacheConnection",
+        "type": "CacheManager.NCache.NCacheBackplane, CacheManager.NCache",
+        "channelName": "channel"
+      },
+      "handles": [
+        {
+          "key": "ncacheConnection",
+          "type": "CacheManager.NCache.NCacheHandle`1, CacheManager.NCache",
+          "enableStatistics": true,
+          "expirationMode": "None",
+          "expirationTimeout": "00:01:00",
+          "enablePerformanceCounters": true
+        },
+        {
+          "key": "ncacheConnection2",
+          "type": "CacheManager.NCache.NCacheHandle`1, CacheManager.NCache",
+          "enableStatistics": true,
+          "expirationMode": "None",
+          "expirationTimeout": "00:02:00",
+          "enablePerformanceCounters": true
+        },
+        {
+          "key": "ncacheConnection3",
+          "type": "CacheManager.NCache.NCacheHandle`1, CacheManager.NCache",
+          "isBackplaneSource": true,
+          "enableStatistics": true,
+          "expirationMode": "None",
+          "enablePerformanceCounters": true
+        }
+      ]
+    }
+  ]
+}
